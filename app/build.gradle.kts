@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.google.services)
     alias(libs.plugins.kotlin.serialization)
+    id("androidx.room")
 }
 
 android {
@@ -40,6 +41,11 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+
+    //noinspection WrongGradleMethod
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 }
 
@@ -92,3 +98,4 @@ dependencies {
     // Coil
     implementation(libs.coil.compose)
 }
+
