@@ -16,9 +16,7 @@ val localProperties = Properties().apply {
 android {
     namespace = "com.kmp.webtonative"
     compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
+        version = release(37)
     }
 
     defaultConfig {
@@ -78,6 +76,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    // Material Icons
+    implementation(libs.androidx.material.icons.extended)
 
     // Navigation 3
     implementation(libs.androidx.navigation3.runtime)
