@@ -1,4 +1,4 @@
-package com.kmp.webtonative.model.repository
+package com.kmp.webtonative.model.repository.database
 
 import com.kmp.webtonative.model.room.History
 import com.kmp.webtonative.model.room.HistoryDao

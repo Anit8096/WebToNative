@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1072331352696",
+    "project_id": "webtonative-498306",
+    "storage_bucket": "webtonative-498306.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072331352696:android:18124b6390b3007e4f5b8d",
+        "android_client_info": {
+          "package_name": "com.kmp.webtonative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072331352696-jp80jr9ip0mb2cmmvs1jo8gj08qid6d6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kmp.webtonative",
+            "certificate_hash": "293e29c30fda26ad89b5ecd45c9d443b81b5bc70"
+          }
+        },
+        {
+          "client_id": "1072331352696-t1mh04scbsiushni500nsqovrkgonlvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2RwRNFG51Mz0Xbw1Hj0w-qU0Uo7rovh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072331352696-t1mh04scbsiushni500nsqovrkgonlvu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

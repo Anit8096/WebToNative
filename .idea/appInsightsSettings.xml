@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.kmp.webtonative" />
+                  <option name="mobileSdkAppId" value="1:1072331352696:android:18124b6390b3007e4f5b8d" />
+                  <option name="projectId" value="webtonative-498306" />
+                  <option name="projectNumber" value="1072331352696" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -2,6 +2,7 @@ package com.kmp.webtonative
 
 import android.app.Application
 import com.kmp.webtonative.di.appModule
+import com.kmp.webtonative.di.viewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -17,7 +18,7 @@ class MyApplication : Application() {
             // Reference Android context
             androidContext(this@MyApplication)
             // Load modules
-            modules(appModule)
+            modules(appModule,viewModel)
         }
     }
 }

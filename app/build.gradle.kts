@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -8,6 +10,9 @@ plugins {
     id("androidx.room")
 }
 
+val localProperties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
+}
 android {
     namespace = "com.kmp.webtonative"
     compileSdk {
@@ -19,11 +24,18 @@ android {
     defaultConfig {
         applicationId = "com.kmp.webtonative"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "WEB_CLIENT_ID",
+            "\"${localProperties.getProperty("WEB_CLIENT_ID")}\""
+        )
+
     }
 
     buildTypes {
@@ -41,6 +53,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     //noinspection WrongGradleMethod
@@ -87,6 +100,7 @@ dependencies {
 
     // Firebase
     implementation(platform(libs.firebase.bom))
+    implementation(libs.googleid)
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
 
