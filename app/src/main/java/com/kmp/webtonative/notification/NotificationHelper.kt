@@ -12,6 +12,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.kmp.webtonative.MainActivity
 import com.kmp.webtonative.R
 import androidx.core.content.edit
+import java.time.LocalDate
 
 object NotificationHelper {
 
@@ -27,59 +28,58 @@ object NotificationHelper {
             "Welcome Notifications",
             NotificationManager.IMPORTANCE_DEFAULT
         )
-        val manager = context.getSystemService(NotificationManager::class.java)
-        manager.createNotificationChannel(channel)
+        context
+            .getSystemService(NotificationManager::class.java)
+            .createNotificationChannel(channel)
     }
 
     // Step 2 — Check if we should show today
-    private fun shouldShowToday(context: Context): Boolean {
-        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val lastShown = prefs.getString(KEY_LAST_SHOWN, null)
-        val today = java.time.LocalDate.now().toString()
-        return lastShown != today
+    fun shouldShowToday(context: Context): Boolean {
+        val lastShown = context
+            .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            .getString(KEY_LAST_SHOWN, null)
+        return lastShown != LocalDate.now().toString()
     }
 
     // Step 3 — Save today's date so we don't show again
     private fun markShownToday(context: Context) {
-        val today = java.time.LocalDate.now().toString()
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit {
-            putString(KEY_LAST_SHOWN, today)
+            putString(KEY_LAST_SHOWN, LocalDate.now().toString())
         }
-    }
-
-    // Step 4 — Check if app is in foreground
-    private fun isAppInForeground(context: Context): Boolean {
-        val manager = context.getSystemService(Context.ACTIVITY_SERVICE)
-                as android.app.ActivityManager
-        return manager.runningAppProcesses?.any {
-            it.importance == android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
-                    && it.processName == context.packageName
-        } ?: false
     }
 
     // Step 5 — Show the notification
     @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     fun show(context: Context) {
         if (!shouldShowToday(context)) return
-        if (isAppInForeground(context)) return
 
-        val intent = Intent(context, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-        }
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE)
+                as android.app.ActivityManager
+        val isForeground = activityManager.runningAppProcesses?.any {
+            it.importance == android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
+                    && it.processName == context.packageName
+        } ?: false
+        if (isForeground) return
+
         val pendingIntent = PendingIntent.getActivity(
-            context, 0, intent,
+            context, 0,
+            Intent(context, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            },
             PendingIntent.FLAG_IMMUTABLE
         )
 
-        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("Welcome Back")
-            .setContentText("Thanks for opening the app")
-            .setAutoCancel(true)
-            .setContentIntent(pendingIntent)
-            .build()
+        NotificationManagerCompat.from(context).notify(
+            NOTIFICATION_ID,
+            NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("Welcome Back")
+                .setContentText("Thanks for opening the app")
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .build()
+        )
 
-        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
         markShownToday(context)
     }
 }

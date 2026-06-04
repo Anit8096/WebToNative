@@ -131,10 +131,10 @@ fun SignInScreen(
                         elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_launcher_foreground),
+                            painter = painterResource(R.drawable.google_logo),
                             contentDescription = null,
                             tint = Color.Unspecified,
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(36.dp)
                         )
                         Spacer(modifier = Modifier.width(12.dp))
                         Text(
