@@ -1,11 +1,14 @@
 package com.kmp.webtonative.ui.screens.auth
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -52,31 +55,30 @@ fun SignInScreen(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             // Illustration
-            Spacer(modifier = Modifier.weight(1f))
-            Icon(
-                painter = painterResource(R.drawable.ic_launcher_foreground),
+            Image(
+                painter = painterResource(R.drawable.app_illustration),
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f),
-                modifier = Modifier
-                    .fillMaxWidth(0.5f)
-                    .aspectRatio(2f)
+                modifier = Modifier.size(350.dp)
             )
 
             // App icon
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Surface(
                 shape = RoundedCornerShape(24.dp),
                 color = MaterialTheme.colorScheme.primaryContainer,
                 modifier = Modifier.size(80.dp)
             ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(12.dp)
-                )
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.app_icon),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.scale(1.84f).offset(y = 2.dp)
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(20.dp))

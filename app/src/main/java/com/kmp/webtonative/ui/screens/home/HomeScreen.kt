@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,6 +38,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.painterResource
@@ -96,12 +98,10 @@ fun HomeScreen(
                             modifier = Modifier.size(40.dp)
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.ic_launcher_foreground),
+                                painter = painterResource(R.drawable.app_icon),
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(4.dp)
+                                modifier = Modifier.scale(1.84f).offset(y = 1.dp)
                             )
                         }
                         Column {

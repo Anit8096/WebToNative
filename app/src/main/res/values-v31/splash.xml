@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.WebToNative.SplashScreen">
+        <item name="android:windowSplashScreenBackground">#5AD4E2</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/webtonative_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.WebToNative</item>
+    </style>
+</resources>
