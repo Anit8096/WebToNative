@@ -3,7 +3,6 @@ package com.kmp.webtonative.ui.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kmp.webtonative.model.repository.auth.AuthRepository
-import com.kmp.webtonative.model.repository.database.HistoryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,7 +10,6 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val authRepository: AuthRepository,
-    private val historyRepository: HistoryRepository
 ) : ViewModel() {
 
     private val _homeState = MutableStateFlow<HomeState>(HomeState.Idle)
@@ -50,5 +48,15 @@ class HomeViewModel(
 
     fun resetState() {
         _homeState.value = HomeState.Idle
+    }
+
+    // Called when WebView closes with Back (keep URL)
+    fun setUrl(url: String) {
+        _urlInput.value = url
+    }
+
+    // Called when WebView closes with X (clear URL)
+    fun clearUrl() {
+        _urlInput.value = ""
     }
 }

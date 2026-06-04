@@ -6,7 +6,9 @@ import com.kmp.webtonative.model.repository.auth.AuthRepository
 import com.kmp.webtonative.model.repository.database.HistoryRepository
 import com.kmp.webtonative.model.room.AppDatabase
 import com.kmp.webtonative.ui.screens.auth.AuthViewModel
+import com.kmp.webtonative.ui.screens.history.HistoryViewModel
 import com.kmp.webtonative.ui.screens.home.HomeViewModel
+import com.kmp.webtonative.ui.screens.webView.WebViewViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
@@ -32,4 +34,6 @@ val appModule = module {
 val viewModel = module {
     viewModelOf(::AuthViewModel)
     viewModelOf(::HomeViewModel)
+    viewModelOf(::WebViewViewModel)
+    viewModelOf(::HistoryViewModel)
 }

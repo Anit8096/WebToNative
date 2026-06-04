@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId = "com.kmp.webtonative"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
@@ -100,8 +100,10 @@ dependencies {
 
     // Firebase
     implementation(platform(libs.firebase.bom))
+        //noinspection LoginCredentials
     implementation(libs.googleid)
     implementation(libs.firebase.auth)
+        //noinspection LoginCredentials
     implementation(libs.play.services.auth)
 
     // WorkManager
