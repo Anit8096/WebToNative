@@ -1,5 +1,6 @@
 package com.kmp.webtonative.model.room
 
+import android.util.Log
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -27,6 +28,7 @@ interface HistoryDao {
 
     @Transaction
     suspend fun recordVisit(url: String, title: String) {
+        Log.d("HistoryDebug", "recordVisit -> $url")
         val existing = getByUrl(url)
         if (existing == null) {
             insert(History(url = url, title = title, lastVisitedTime = System.currentTimeMillis()))

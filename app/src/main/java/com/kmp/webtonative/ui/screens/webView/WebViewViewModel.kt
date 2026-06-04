@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 class WebViewViewModel(
     private val historyRepository: HistoryRepository
 ) : ViewModel() {
+    private var lastRecordedUrl: String? = null
+    private var lastRecordedTime: Long = 0L
 
     private val _webViewState = MutableStateFlow<WebViewState>(WebViewState.Loading)
     val webViewState: StateFlow<WebViewState> = _webViewState.asStateFlow()
@@ -36,7 +38,14 @@ class WebViewViewModel(
         _currentUrl.value = url
         _webViewState.value = WebViewState.Success
 
-        // Record visit in Room — upsert handles duplicates automatically
+        val now = System.currentTimeMillis()
+        if ( (lastRecordedUrl == url) && (now - lastRecordedTime < 3000)) {
+            return
+        }
+
+        lastRecordedUrl = url
+        lastRecordedTime = now
+
         viewModelScope.launch {
             historyRepository.recordVisit(
                 url = url,
